@@ -1,13 +1,13 @@
 package daos;
 
-import models.PokemonService;
+import models.Pokemon;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class PokemonDAOTest {
-    private PokemonService pokemonService = new PokemonService();
+    private PokemonConcreteDao pokemonConcreteDao = new PokemonConcreteDao();
     private Pokemon lapras;
     private Pokemon articuno;
 
@@ -15,7 +15,7 @@ public class PokemonDAOTest {
     @Before
     public void setUp(){
         lapras = new Pokemon(131, "Lapras", "Water", 40, "Blue");
-        articuno = pokemonService.getPokemonById(144);
+        articuno = pokemonConcreteDao.getPokemonById(144);
     }
 
 

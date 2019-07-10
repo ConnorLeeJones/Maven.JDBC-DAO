@@ -1,6 +1,6 @@
-package daos;
+package models;
 
-public class Pokemon {
+public class Pokemon implements PokemonDto {
     private Integer id;
     private String name;
     private String element;

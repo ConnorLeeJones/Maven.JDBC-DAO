@@ -1,19 +1,18 @@
-package models;
+package daos;
 
-import daos.Pokemon;
-import daos.PokemonDao;
+import models.Pokemon;
 import models.ConnectionClass;
 
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PokemonService implements PokemonDao {
+public class PokemonConcreteDao implements PokemonDao {
     private Connection connection;
     private Statement stmt;
     private ResultSet rs;
 
-    public PokemonService(){
+    public PokemonConcreteDao(){
         connection = ConnectionClass.getConnection();
     }
 
