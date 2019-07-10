@@ -2,10 +2,10 @@ package daos;
 
 import models.Pokemon;
 
-import java.util.Set;
+import java.util.List;
 
 public interface PokemonDao {
-    Set<Pokemon> getAllPokemon();
+    List<Pokemon> getAllPokemon();
     Pokemon getPokemonById(Integer id);
     Pokemon getPokemonByName(String name);
     Boolean addPokemon(Pokemon pokemon);

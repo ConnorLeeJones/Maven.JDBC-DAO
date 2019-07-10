@@ -4,12 +4,13 @@ import daos.PokemonConcreteDao;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
 
 public class PokemonTest {
-    PokemonConcreteDao pokemonConcreteDao = new PokemonConcreteDao();
+    private PokemonConcreteDao pokemonConcreteDao = new PokemonConcreteDao();
 
     @Before
     public void setUp(){
@@ -23,8 +24,8 @@ public class PokemonTest {
 
     @Test
     public void getAllPokemon() {
-        Set<Pokemon> pokemonHashSet = pokemonConcreteDao.getAllPokemon();
-        assertEquals(10, pokemonHashSet.size());
+        List<Pokemon> pokemonList = pokemonConcreteDao.getAllPokemon();
+        assertEquals(10, pokemonList.size());
     }
 
     @Test
@@ -41,8 +42,8 @@ public class PokemonTest {
 
     @Test
     public void getPokemonByLevel(){
-        Set<Pokemon> pokemonHashSet = pokemonConcreteDao.getPokemonByLevel(100);
-        assertEquals(2, pokemonHashSet.size());
+        Set<Pokemon> pokemonHashSet = pokemonConcreteDao.getPokemonByLevel(65);
+        assertEquals(3, pokemonHashSet.size());
 
     }
 
@@ -60,13 +61,16 @@ public class PokemonTest {
     @Test
     public void updatePokemon() {
         Pokemon mew = pokemonConcreteDao.getPokemonById(151);
-        assertEquals((int) mew.getLevel(), 100);
 
-        mew.setLevel(200);
-
+        mew.setLevel(100);
         pokemonConcreteDao.updatePokemon(mew);
 
-        assertEquals((int) mew.getLevel(), 200);
+        assertEquals(100, (int) pokemonConcreteDao.getPokemonById(151).getLevel());
+
+        mew.setLevel(200);
+        pokemonConcreteDao.updatePokemon(mew);
+
+        assertEquals(200, (int) pokemonConcreteDao.getPokemonById(151).getLevel());
     }
 
     @Test

@@ -4,7 +4,9 @@ import models.Pokemon;
 import models.ConnectionClass;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class PokemonConcreteDao implements PokemonDao {
@@ -32,12 +34,12 @@ public class PokemonConcreteDao implements PokemonDao {
 
 
 
-    public Set<Pokemon> getAllPokemon() {
+    public List<Pokemon> getAllPokemon() {
         try {
             stmt = connection.createStatement();
             rs = stmt.executeQuery("SELECT * FROM pokemon");
 
-            Set pokemon = new HashSet();
+            List pokemon = new ArrayList();
 
             while(rs.next()){
                 Pokemon poke = extractPokemonFromResultSet(rs);
@@ -123,7 +125,7 @@ public class PokemonConcreteDao implements PokemonDao {
 
     public Boolean updatePokemon(Pokemon pokemon) {
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE pokemon name=?, element=?, level=?, color=? WHERE id=?");
+            PreparedStatement ps = connection.prepareStatement("UPDATE pokemon SET name=?, element=?, level=?, color=? WHERE id=?");
             ps.setString(1, pokemon.getName());
             ps.setString(2, pokemon.getElement());
             ps.setInt(3, pokemon.getLevel());
